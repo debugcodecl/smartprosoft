@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import emailjs from '@emailjs/browser';
 import './App.css';
 
 const SmartProSoft = () => {
@@ -8,9 +7,6 @@ const SmartProSoft = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    // Initialize EmailJS with your public key
-    emailjs.init("9wJkKQMZFwh3A7mCe"); // Public key - you'll need to replace this with your own
-    
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 100);
     };
@@ -40,30 +36,33 @@ const SmartProSoft = () => {
     setIsSubmitting(true);
     
     try {
-      // EmailJS service configuration
-      const templateParams = {
-        from_name: e.target.name.value,
-        from_email: e.target.email.value,
-        phone: e.target.phone.value,
-        service: e.target.service.value,
-        message: e.target.message.value,
-        to_email: 'debugcodecl@gmail.com'
-      };
+      // Usar FormSubmit como servicio de email
+      const formData = new FormData();
+      formData.append('name', e.target.name.value);
+      formData.append('email', e.target.email.value);
+      formData.append('phone', e.target.phone.value);
+      formData.append('service', e.target.service.value);
+      formData.append('message', e.target.message.value);
+      formData.append('_to', 'debugcodecl@gmail.com');
+      formData.append('_subject', `Nuevo contacto desde SmartProSoft - ${e.target.name.value}`);
+      formData.append('_template', 'table');
+      formData.append('_captcha', 'false');
 
-      // Send email using EmailJS
-      await emailjs.send(
-        'service_smartpro', // Service ID - you'll need to create this in EmailJS
-        'template_contact', // Template ID - you'll need to create this in EmailJS
-        templateParams
-      );
+      const response = await fetch('https://formsubmit.co/debugcodecl@gmail.com', {
+        method: 'POST',
+        body: formData
+      });
 
-      // Show success message
-      alert('¡Mensaje enviado exitosamente! Te contactaremos pronto.');
-      e.target.reset();
+      if (response.ok) {
+        alert('¡Mensaje enviado exitosamente! Te contactaremos pronto.');
+        e.target.reset();
+      } else {
+        throw new Error('Error en el servidor');
+      }
       
     } catch (error) {
       console.error('Error sending email:', error);
-      alert('Hubo un error al enviar el mensaje. Por favor, intenta nuevamente o contáctanos directamente.');
+      alert('Hubo un error al enviar el mensaje. Por favor, intenta nuevamente o contáctanos directamente por WhatsApp.');
     } finally {
       setIsSubmitting(false);
     }
