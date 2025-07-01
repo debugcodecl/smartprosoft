@@ -972,7 +972,33 @@ p {
     }
 }
 
-/* Responsive Design */
+/* Screen reader only content */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.form-disclaimer {
+    text-align: center;
+    margin-top: 1rem;
+    opacity: 0.8;
+}
+
+.contact-item a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.contact-item a:hover {
+    text-decoration: underline;
+}
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
