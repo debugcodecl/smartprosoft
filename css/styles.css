@@ -1050,6 +1050,10 @@ p {
     .whatsapp-float {
         bottom: 80px;
     }
+    
+    .scroll-to-top {
+        bottom: 150px;
+    }
 }
 
 @media (max-width: 480px) {
