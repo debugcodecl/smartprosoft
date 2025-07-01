@@ -22,12 +22,22 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Navbar scroll effect
+    // Navbar scroll effect and scroll to top button
     window.addEventListener('scroll', function() {
-        if (window.scrollY > 100) {
+        const scrollY = window.scrollY;
+        
+        // Navbar effect
+        if (scrollY > 100) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
+        }
+        
+        // Scroll to top button effect
+        if (scrollY > 300) {
+            scrollToTopBtn.classList.add('show');
+        } else {
+            scrollToTopBtn.classList.remove('show');
         }
     });
     
