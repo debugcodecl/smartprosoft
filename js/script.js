@@ -1,9 +1,11 @@
-// Smooth scrolling and navigation
+// SmartProSoft Website JavaScript
+
 document.addEventListener('DOMContentLoaded', function() {
     // Navigation functionality
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
     const navbar = document.getElementById('navbar');
+    const whatsappBtn = document.getElementById('whatsappBtn');
     
     // Mobile menu toggle
     hamburger.addEventListener('click', function() {
@@ -41,6 +43,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         });
+    });
+
+    // WhatsApp button functionality
+    whatsappBtn.addEventListener('click', function() {
+        const phoneNumber = '+56995984952';
+        const message = 'Hola, me interesa conocer más sobre los servicios de SmartProSoft.';
+        const whatsappUrl = `https://wa.me/${phoneNumber.replace('+', '')}?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
     });
     
     // Animate elements on scroll
@@ -83,22 +93,16 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Contact form handling
     const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+            // Change button text to show loading
+            submitBtn.textContent = 'Enviando...';
+            submitBtn.disabled = true;
             
-            // Get form data
-            const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData);
-            
-            // Simulate form submission
-            showNotification('¡Mensaje enviado exitosamente! Te contactaremos pronto.', 'success');
-            
-            // Reset form
-            contactForm.reset();
-            
-            // In a real application, you would send this data to your server
-            console.log('Form data:', data);
+            // FormSubmit will handle the rest
+            // The form will redirect after successful submission
         });
     }
     
@@ -125,18 +129,6 @@ document.addEventListener('DOMContentLoaded', function() {
         .portfolio-item.animate {
             opacity: 1;
             transform: translateY(0);
-        }
-        
-        .hamburger.active .bar:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .hamburger.active .bar:nth-child(1) {
-            transform: translateY(7px) rotate(45deg);
-        }
-        
-        .hamburger.active .bar:nth-child(3) {
-            transform: translateY(-7px) rotate(-45deg);
         }
         
         .notification {
@@ -175,10 +167,9 @@ function animateStats() {
     const statNumbers = document.querySelectorAll('.stat-number');
     
     statNumbers.forEach(stat => {
-        const target = parseInt(stat.textContent.replace('+', ''));
-        const isTime = stat.textContent.includes('/');
+        const target = parseInt(stat.dataset.target);
         
-        if (isTime) return; // Skip 24/7 animation
+        if (isNaN(target)) return; // Skip 24/7 animation
         
         let current = 0;
         const increment = target / 50;
@@ -315,31 +306,17 @@ document.querySelectorAll('.form-group input, .form-group select, .form-group te
     });
 });
 
-// Add typing effect to hero title (optional enhancement)
-function typeWriter(element, text, speed = 100) {
-    let i = 0;
-    element.innerHTML = '';
-    
-    function type() {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    }
-    
-    type();
-}
-
 // Lazy loading for images
 if ('IntersectionObserver' in window) {
     const imageObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.remove('lazy');
-                imageObserver.unobserve(img);
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.classList.remove('lazy');
+                    imageObserver.unobserve(img);
+                }
             }
         });
     });
