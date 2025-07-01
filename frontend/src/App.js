@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import emailjs from '@emailjs/browser';
 import './App.css';
 
 const SmartProSoft = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
+    // Initialize EmailJS with your public key
+    emailjs.init("9wJkKQMZFwh3A7mCe"); // Public key - you'll need to replace this with your own
+    
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 100);
     };
@@ -30,19 +35,55 @@ const SmartProSoft = () => {
     setIsMenuOpen(false);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData);
+    setIsSubmitting(true);
     
-    // Show success message
-    alert('¡Mensaje enviado exitosamente! Te contactaremos pronto.');
-    e.target.reset();
-    console.log('Form data:', data);
+    try {
+      // EmailJS service configuration
+      const templateParams = {
+        from_name: e.target.name.value,
+        from_email: e.target.email.value,
+        phone: e.target.phone.value,
+        service: e.target.service.value,
+        message: e.target.message.value,
+        to_email: 'debugcodecl@gmail.com'
+      };
+
+      // Send email using EmailJS
+      await emailjs.send(
+        'service_smartpro', // Service ID - you'll need to create this in EmailJS
+        'template_contact', // Template ID - you'll need to create this in EmailJS
+        templateParams
+      );
+
+      // Show success message
+      alert('¡Mensaje enviado exitosamente! Te contactaremos pronto.');
+      e.target.reset();
+      
+    } catch (error) {
+      console.error('Error sending email:', error);
+      alert('Hubo un error al enviar el mensaje. Por favor, intenta nuevamente o contáctanos directamente.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleWhatsAppClick = () => {
+    const phoneNumber = '+56995984952';
+    const message = 'Hola, me interesa conocer más sobre los servicios de SmartProSoft.';
+    const whatsappUrl = `https://wa.me/${phoneNumber.replace('+', '')}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
   };
 
   return (
     <div className="smartprosoft-website">
+      {/* WhatsApp Floating Button */}
+      <div className="whatsapp-float" onClick={handleWhatsAppClick}>
+        <i className="fab fa-whatsapp"></i>
+        <span className="whatsapp-tooltip">¡Contáctanos por WhatsApp!</span>
+      </div>
+
       {/* Navigation */}
       <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
         <div className="nav-container">
@@ -80,7 +121,7 @@ const SmartProSoft = () => {
       {/* Hero Section */}
       <section className="hero" id="inicio">
         <div className="hero-background">
-          <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b" alt="Desarrollo de Software" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=1920&h=1080&fit=crop&crop=center&auto=format&q=80" alt="Desarrollo de Software" loading="lazy" />
           <div className="hero-overlay"></div>
         </div>
         <div className="hero-content">
@@ -263,7 +304,7 @@ const SmartProSoft = () => {
             </div>
             
             <div className="about-image">
-              <img src="https://images.unsplash.com/photo-1618544976420-1f213fcf2052" 
+              <img src="https://images.unsplash.com/photo-1618544976420-1f213fcf2052?w=800&h=600&fit=crop&crop=center&auto=format&q=80" 
                    alt="Equipo SmartProSoft" loading="lazy" />
             </div>
           </div>
@@ -281,7 +322,7 @@ const SmartProSoft = () => {
           <div className="portfolio-grid">
             <div className="portfolio-item">
               <div className="portfolio-image">
-                <img src="https://images.pexels.com/photos/16053029/pexels-photo-16053029.jpeg" 
+                <img src="https://images.pexels.com/photos/16053029/pexels-photo-16053029.jpeg?w=800&h=600&fit=crop&crop=center&auto=compress&cs=tinysrgb" 
                      alt="E-commerce Platform" loading="lazy" />
                 <div className="portfolio-overlay">
                   <div className="portfolio-content">
@@ -299,7 +340,7 @@ const SmartProSoft = () => {
             
             <div className="portfolio-item">
               <div className="portfolio-image">
-                <img src="https://images.unsplash.com/photo-1576272531110-2a342fe22342" 
+                <img src="https://images.unsplash.com/photo-1607799279861-4dd421887fb3?w=800&h=600&fit=crop&crop=center&auto=format&q=80" 
                      alt="CRM System" loading="lazy" />
                 <div className="portfolio-overlay">
                   <div className="portfolio-content">
@@ -317,7 +358,7 @@ const SmartProSoft = () => {
             
             <div className="portfolio-item">
               <div className="portfolio-image">
-                <img src="https://images.unsplash.com/photo-1596784326488-23581279e33d" 
+                <img src="https://images.unsplash.com/photo-1596784326488-23581279e33d?w=800&h=600&fit=crop&crop=center&auto=format&q=80" 
                      alt="Mobile App" loading="lazy" />
                 <div className="portfolio-overlay">
                   <div className="portfolio-content">
@@ -352,7 +393,7 @@ const SmartProSoft = () => {
                   <i className="fas fa-envelope"></i>
                   <div>
                     <h4>Email</h4>
-                    <p>info@smartprosoft.com</p>
+                    <p>debugcodecl@gmail.com</p>
                   </div>
                 </div>
                 
@@ -360,7 +401,7 @@ const SmartProSoft = () => {
                   <i className="fas fa-phone"></i>
                   <div>
                     <h4>Teléfono</h4>
-                    <p>+1 (555) 123-4567</p>
+                    <p>+56 9 9598 4952</p>
                   </div>
                 </div>
                 
@@ -368,7 +409,7 @@ const SmartProSoft = () => {
                   <i className="fas fa-map-marker-alt"></i>
                   <div>
                     <h4>Ubicación</h4>
-                    <p>Ciudad de México, México</p>
+                    <p>Chile</p>
                   </div>
                 </div>
               </div>
@@ -406,7 +447,9 @@ const SmartProSoft = () => {
                   <textarea name="message" placeholder="Cuéntanos sobre tu proyecto" rows="5" required></textarea>
                 </div>
                 
-                <button type="submit" className="btn-primary">Enviar Mensaje</button>
+                <button type="submit" className="btn-primary" disabled={isSubmitting}>
+                  {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}
+                </button>
               </form>
             </div>
           </div>
@@ -451,9 +494,9 @@ const SmartProSoft = () => {
             <div className="footer-section">
               <h4>Contacto</h4>
               <ul>
-                <li><i className="fas fa-envelope"></i> info@smartprosoft.com</li>
-                <li><i className="fas fa-phone"></i> +1 (555) 123-4567</li>
-                <li><i className="fas fa-map-marker-alt"></i> Ciudad de México, México</li>
+                <li><i className="fas fa-envelope"></i> debugcodecl@gmail.com</li>
+                <li><i className="fas fa-phone"></i> +56 9 9598 4952</li>
+                <li><i className="fas fa-map-marker-alt"></i> Chile</li>
               </ul>
             </div>
           </div>
