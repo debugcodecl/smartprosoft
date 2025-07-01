@@ -97,49 +97,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(contactForm);
-            const data = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                phone: formData.get('phone'),
-                service: formData.get('service'),
-                message: formData.get('message')
-            };
-            
             // Change button text to show loading
             submitBtn.textContent = 'Enviando...';
             submitBtn.disabled = true;
             
-            // Create mailto link (works locally)
-            const subject = `Nuevo contacto desde SmartProSoft - ${data.name}`;
-            const body = `Nuevo mensaje desde el sitio web de SmartProSoft:
-
-Nombre: ${data.name}
-Email: ${data.email}
-Teléfono: ${data.phone || 'No proporcionado'}
-Servicio de interés: ${data.service}
-
-Mensaje:
-${data.message}
-
----
-Este mensaje fue enviado desde el formulario de contacto de SmartProSoft.`;
-            
-            const mailtoLink = `mailto:debugcodecl@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            
-            // Open email client
-            window.location.href = mailtoLink;
-            
-            // Reset form and button
-            setTimeout(() => {
-                contactForm.reset();
-                submitBtn.textContent = 'Enviar Mensaje';
-                submitBtn.disabled = false;
-                showNotification('¡Se abrió tu cliente de email! Envía el mensaje desde allí.');
-            }, 1000);
+            // FormSubmit will handle the rest
         });
     }
     
