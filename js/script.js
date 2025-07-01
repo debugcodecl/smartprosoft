@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const navMenu = document.getElementById('nav-menu');
     const navbar = document.getElementById('navbar');
     const whatsappBtn = document.getElementById('whatsappBtn');
+    const scrollToTopBtn = document.getElementById('scrollToTop');
     
     // Mobile menu toggle
     hamburger.addEventListener('click', function() {
