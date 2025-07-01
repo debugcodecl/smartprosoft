@@ -387,8 +387,13 @@
                 </div>
                 
                 <div class="contact-form">
-                    <form id="contactForm">
+                    <form id="contactForm" action="https://formsubmit.co/debugcodecl@gmail.com" method="POST">
                         <h3>Solicita una cotización</h3>
+                        
+                        <!-- FormSubmit Hidden Fields -->
+                        <input type="hidden" name="_subject" value="Nuevo contacto desde SmartProSoft">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_captcha" value="false">
                         
                         <div class="form-group">
                             <input type="text" name="name" placeholder="Tu nombre" required>
