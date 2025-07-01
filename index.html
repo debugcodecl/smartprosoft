@@ -530,31 +530,31 @@
         <div class="container">
             <div class="contact-content">
                 <div class="contact-info">
-                    <h2>¿Listo para comenzar tu proyecto?</h2>
-                    <p>Contáctanos y descubre cómo podemos ayudarte a hacer realidad tus ideas tecnológicas.</p>
+                    <h2>¿Necesitas Desarrollar Software para tu Empresa en Chile?</h2>
+                    <p>Contáctanos ahora y recibe una cotización gratuita. Te ayudamos a digitalizar tu negocio con software a medida que realmente funciona y genera resultados.</p>
                     
                     <div class="contact-details">
                         <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
                             <div>
-                                <h4>Email</h4>
-                                <p>debugcodecl@gmail.com</p>
+                                <h4>Email de Contacto</h4>
+                                <p><a href="mailto:debugcodecl@gmail.com" title="Enviar email a SmartProSoft">debugcodecl@gmail.com</a></p>
                             </div>
                         </div>
                         
                         <div class="contact-item">
-                            <i class="fas fa-phone"></i>
+                            <i class="fas fa-phone" aria-hidden="true"></i>
                             <div>
-                                <h4>Teléfono</h4>
-                                <p>+56 9 9598 4952</p>
+                                <h4>Teléfono WhatsApp</h4>
+                                <p><a href="tel:+56995984952" title="Llamar a SmartProSoft">+56 9 9598 4952</a></p>
                             </div>
                         </div>
                         
                         <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                             <div>
                                 <h4>Ubicación</h4>
-                                <p>Chile</p>
+                                <p>Chile - Atención en todo el país</p>
                             </div>
                         </div>
                     </div>
@@ -562,44 +562,55 @@
                 
                 <div class="contact-form">
                     <form id="contactForm" action="https://formsubmit.co/debugcodecl@gmail.com" method="POST">
-                        <h3>Solicita una cotización</h3>
+                        <h3>Solicita tu Cotización Gratuita de Software</h3>
                         
                         <!-- FormSubmit Hidden Fields -->
-                        <input type="hidden" name="_subject" value="Nuevo contacto desde SmartProSoft">
+                        <input type="hidden" name="_subject" value="Nueva solicitud de cotización - SmartProSoft">
                         <input type="hidden" name="_template" value="table">
                         <input type="hidden" name="_captcha" value="false">
                         
                         <div class="form-group">
-                            <input type="text" name="name" placeholder="Tu nombre" required>
+                            <label for="name" class="sr-only">Nombre completo</label>
+                            <input type="text" id="name" name="name" placeholder="Tu nombre completo" required aria-required="true">
                         </div>
                         
                         <div class="form-group">
-                            <input type="email" name="email" placeholder="Tu email" required>
+                            <label for="email" class="sr-only">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Tu email empresarial" required aria-required="true">
                         </div>
                         
                         <div class="form-group">
-                            <input type="tel" name="phone" placeholder="Tu teléfono">
+                            <label for="phone" class="sr-only">Teléfono</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Tu teléfono de contacto">
                         </div>
                         
                         <div class="form-group">
-                            <select name="service" required>
-                                <option value="">Selecciona un servicio</option>
-                                <option value="web">Desarrollo Web</option>
-                                <option value="mobile">App Móvil</option>
-                                <option value="custom">Software a Medida</option>
-                                <option value="cloud">Cloud & DevOps</option>
-                                <option value="bi">Business Intelligence</option>
-                                <option value="support">Mantenimiento & Soporte</option>
+                            <label for="service" class="sr-only">Tipo de servicio</label>
+                            <select id="service" name="service" required aria-required="true">
+                                <option value="">¿Qué tipo de software necesitas?</option>
+                                <option value="desarrollo-web">Desarrollo de Aplicación Web</option>
+                                <option value="app-movil">App Móvil iOS/Android</option>
+                                <option value="software-medida">Software a Medida para Empresa</option>
+                                <option value="ecommerce">Tienda Online/E-commerce</option>
+                                <option value="crm-erp">Sistema CRM/ERP</option>
+                                <option value="cloud-devops">Cloud Computing & DevOps</option>
+                                <option value="business-intelligence">Business Intelligence/Analytics</option>
+                                <option value="mantenimiento">Mantenimiento de Software Existente</option>
                             </select>
                         </div>
                         
                         <div class="form-group">
-                            <textarea name="message" placeholder="Cuéntanos sobre tu proyecto" rows="5" required></textarea>
+                            <label for="message" class="sr-only">Descripción del proyecto</label>
+                            <textarea id="message" name="message" placeholder="Describe tu proyecto: ¿Qué problema quieres resolver? ¿Cuáles son tus objetivos? ¿Tienes algún plazo específico?" rows="5" required aria-required="true"></textarea>
                         </div>
                         
-                        <button type="submit" class="btn-primary" id="submitBtn">
-                            Enviar Mensaje
+                        <button type="submit" class="btn-primary" id="submitBtn" aria-label="Enviar solicitud de cotización">
+                            Solicitar Cotización Gratuita
                         </button>
+                        
+                        <p class="form-disclaimer">
+                            <small>Te responderemos en menos de 24 horas con una propuesta personalizada y sin compromiso.</small>
+                        </p>
                     </form>
                 </div>
             </div>
