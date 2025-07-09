@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // WhatsApp button functionality
     whatsappBtn.addEventListener('click', function() {
         const phoneNumber = '+56995984952';
-        const message = 'Hola, me interesa conocer más sobre los servicios de SmartProSoft.';
+        const message = 'Hola, me interesa conocer más sobre los servicios de HQA.';
         const whatsappUrl = `https://wa.me/${phoneNumber.replace('+', '')}?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, '_blank');
     });
