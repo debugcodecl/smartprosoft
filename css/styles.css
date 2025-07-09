@@ -257,6 +257,13 @@ p {
     align-items: center;
 }
 
+.nav-logo img {
+    height: 40px;
+    width: auto;
+    max-width: 150px;
+    object-fit: contain;
+}
+
 .nav-logo h2 {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     -webkit-background-clip: text;
@@ -265,6 +272,7 @@ p {
     font-size: 1.8rem;
     font-weight: 800;
     margin: 0;
+    display: none; /* Hide if logo image is present */
 }
 
 .nav-menu {
