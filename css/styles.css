@@ -1017,10 +1017,19 @@ p {
         box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
         padding: 2rem 0;
         gap: 1rem;
+        z-index: 1000;
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
     }
     
     .nav-menu.active {
         left: 0;
+    }
+    
+    /* Ensure hero section is not covered */
+    .hero {
+        position: relative;
+        z-index: 1;
     }
     
     .hero-title {
