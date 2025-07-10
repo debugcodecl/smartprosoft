@@ -1010,38 +1010,53 @@ p {
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
+        z-index: 1002;
     }
     
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 80px;
+        top: 70px;
         flex-direction: column;
-        background-color: rgba(255, 255, 255, 0.98);
+        background-color: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(20px);
         width: 100%;
         text-align: center;
         transition: 0.3s;
-        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-        padding: 2rem 0;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem 0;
         gap: 1rem;
-        z-index: 1000;
-        max-height: calc(100vh - 80px);
+        z-index: 999;
+        max-height: calc(100vh - 70px);
         overflow-y: auto;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
     }
     
     .nav-menu.active {
         left: 0;
     }
     
-    /* Ensure hero section is not covered */
+    /* Ensure navbar has proper z-index */
+    .navbar {
+        z-index: 1001;
+        padding: 0.8rem 0;
+    }
+    
+    /* Hero section adjustments for mobile */
     .hero {
         position: relative;
         z-index: 1;
+        margin-top: 0;
+        min-height: 100vh;
+    }
+    
+    .hero-content {
+        padding-top: 80px;
     }
     
     .hero-title {
         font-size: 2.5rem;
+        margin-top: 1rem;
     }
     
     .hero-cta {
