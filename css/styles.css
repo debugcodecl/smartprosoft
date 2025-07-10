@@ -1067,10 +1067,12 @@ p {
         z-index: 1;
         margin-top: 0;
         min-height: 100vh;
+        padding-top: 70px;
     }
     
     .hero-content {
-        padding-top: 80px;
+        padding-top: 60px;
+        z-index: 2;
     }
     
     .hero-title {
