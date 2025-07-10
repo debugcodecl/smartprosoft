@@ -1078,9 +1078,32 @@ p {
         margin-top: 1rem;
     }
     
+    /* Logo responsive adjustments */
+    .nav-logo img {
+        height: 35px;
+        max-width: 100px;
+    }
+    
+    /* Hero content spacing */
+    .hero-content .container {
+        padding-top: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+    
     .hero-cta {
         flex-direction: column;
         align-items: center;
+        gap: 1rem;
+    }
+    
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
     }
     
     .services-grid {
